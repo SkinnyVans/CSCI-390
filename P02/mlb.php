@@ -33,11 +33,11 @@
 				<div class="w3-third">
 					<h1 class="bigfont">MLB News</h1>
 					<video width="320" height="240" controls>
-						<source src="videos/Martinezs fourHR game.mp4" type="video/mp4" />
+						<source src="videos/fourHR.mp4" type="video/mp4" />
 					</video>
 					<p class="videocomment">JD Martinez hits four home runs in one game</p>
 					<video width="320" height="240" controls>
-						<source src="videos/Must C Stanton crushes camera.mp4" type="video/mp4" />
+						<source src="videos/Stanton.mp4" type="video/mp4" />
 					</video>
 					<p class="videocomment">Giancarlo Stanton hits 53rd home run of the year</p>
 				</div>
