@@ -2,17 +2,26 @@
 <html>
 	<head>
 		<link rel="stylesheet" href="style/style.css" />
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 		<title>Home</title>
 	</head>
 
 	<body>
-		<div>
+		<div class="w3-row">
 			<?php include("menu.html"); ?>
 		</div>
 		<h1 class="underline">Sports</h1>
-		<p>This is a website about our favorite sports</p>
-		<p>This website discusses <em>MLB</em> and <em>NFL</em> news</p>
-		<img alt="Sports Logo" src="images/mlbnfl.jpg" />
+		<div class="w3-row-padding">
+			<div class="w3-quarter"></div>
+			<div class="w3-half">
+				<p>This is a website about our favorite sports</p>
+				<p>This website discusses <em>MLB</em> and <em>NFL</em> news</p>
+				<img alt="Sports Logo" src="images/mlbnfl.jpg" />
+			</div>
+			<div class="w3-quarter"></div>
+		</div>
 		<h1>On this site, you can find:</h1>
 		<ul>
 			<li><strong>MLB</strong> News</li>
@@ -20,6 +29,9 @@
 			<li>Our Favorite MLB Teams</li>
 			<li>Our Favorite NFL Teams</li>
 		</ul>
+		<div class="w3-row">
+			<?php include("footer.html"); ?>
+		</div>
 	</body>
 
 </html>
