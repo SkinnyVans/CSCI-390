@@ -11,11 +11,12 @@
 
 <?php
 // define variables and set to empty values
-$bamaErr = $gErr = $osuErr = $wiscErr = $ndErr = "";
-$spreadBama = $spreadG = $spreadOSU = $spreadWisc = $spreadND = $over_underBama = $over_underG = $over_underOSU = $over_underWisc = $over_underND = $website = "";
+$pickErr = $nameErr = "";
+$spread1 = $spread2 = $spread3 = $spread4 = $spread5 = $over_under1 = $over_under2 = $over_under3 = $over_under4 = $over_under5 = "";
+$name = "User";
 $servername = "localhost";
 $username = "root";
-$password = "student";
+$password = "Password";
 $dbname = "ncaapicks";
          // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -24,59 +25,68 @@ if ($conn->connect_error){
 	die("Connection failed: " . $conn->connect_error);
 }
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-	if (empty($_POST["spreadBama"])) {
-		$bamaErr = "Alabama vs LSU pick is required";
+	if (empty($_POST["name"])) {
+		$nameErr = "Name is required";
 	} else {
-		$spreadBama = test_input($_POST["spreadBama"]);
+		$name = test_input($_POST["name"]);
+		// check if name only contains letters and whitespace
+		if (!preg_match("/^[a-zA-Z ]*$/",$name)) {
+			$nameErr = "Only letters and white space allowed";
+		}
 	}
-	if (empty($_POST["over_underBama"])) {
-		$bamaErr = "Alabama vs LSU pick is required";
+	if (empty($_POST["spread1"])) {
+		$pickErr = "Pick is required";
 	} else {
-		$over_underBama = test_input($_POST["over_underBama"]);
+		$spread1 = test_input($_POST["spread1"]);
 	}
-
-	if (empty($_POST["spreadG"])) {
-		$gErr = "Georgia vs South Carolina pick is required";
+	if (empty($_POST["over_under1"])) {
+		$pickErr = "Pick is required";
 	} else {
-		$spreadG = test_input($_POST["spreadG"]);
-	}
-	if (empty($_POST["over_underG"])) {
-		$gErr = "Georgia vs South Carolina pick is required";
-	} else {
-		$over_underG = test_input($_POST["over_underG"]);
+		$over_under1 = test_input($_POST["over_under1"]);
 	}
 
-	if (empty($_POST["spreadOSU"])) {
-		$osuErr = "Ohio State vs Iowa pick is required";
+	if (empty($_POST["spread2"])) {
+		$pickErr = "Pick is required";
 	} else {
-		$spreadOSU = test_input($_POST["spreadOSU"]);
+		$spread2 = test_input($_POST["spread2"]);
 	}
-	if (empty($_POST["over_underOSU"])) {
-		$osuErr = "Ohio State vs Iowa pick is required";
+	if (empty($_POST["over_under2"])) {
+		$pickErr = "Pick is required";
 	} else {
-		$over_underOSU = test_input($_POST["over_underOSU"]);
-	}
-
-	if (empty($_POST["spreadWisc"])) {
-		$wiscErr = "Wisconsin vs Indiana pick is required";
-	} else {
-		$spreadWisc = test_input($_POST["spreadWisc"]);
-	}
-	if (empty($_POST["over_underWisc"])) {
-		$wiscErr = "Ohio State vs Iowa pick is required";
-	} else {
-		$over_underWisc = test_input($_POST["over_underWisc"]);
+		$over_under2 = test_input($_POST["over_under2"]);
 	}
 
-	if (empty($_POST["spreadND"])) {
-		$ndErr = "Notre Dame pick is required";
+	if (empty($_POST["spread3"])) {
+		$pickErr = "Pick is required";
 	} else {
-		$spreadND = test_input($_POST["spreadND"]);
+		$spread3 = test_input($_POST["spread3"]);
 	}
-	if (empty($_POST["over_underND"])) {
-		$osuErr = "Ohio State vs Iowa pick is required";
+	if (empty($_POST["over_under3"])) {
+		$pickErr = "Pick is required";
 	} else {
-		$over_underND = test_input($_POST["over_underND"]);
+		$over_under3 = test_input($_POST["over_under3"]);
+	}
+
+	if (empty($_POST["spread4"])) {
+		$pickErr = "Pick is required";
+	} else {
+		$spread4 = test_input($_POST["spread4"]);
+	}
+	if (empty($_POST["over_under4"])) {
+		$pickErr = "Pick is required";
+	} else {
+		$over_under4 = test_input($_POST["over_under4"]);
+	}
+
+	if (empty($_POST["spread5"])) {
+		$pickErr = "Pick is required";
+	} else {
+		$spread5 = test_input($_POST["spread5"]);
+	}
+	if (empty($_POST["over_under5"])) {
+		$pickErr = "Pick is required";
+	} else {
+		$over_under5 = test_input($_POST["over_under5"]);
 	}
 	/////////////////////////////////////////////////////////////
 	/*if (empty($_POST["email"])) {
@@ -108,9 +118,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		$gender = test_input($_POST["gender"]);
 	}*/
 
-	if( $bamaErr == '' && $gErr == '' && $osuErr == '' && $wiscErr == '' && $ndErr == ''){
-		$sql = "INSERT INTO picks (spreadBama, spreadND, spreadG, spreadWisc, spreadOSU, over_underND, over_underBama, over_underWisc, over_underG, over_underOSU) VALUES ('$spreadBama', '$spreadND', '$spreadG', '$spreadWisc', '$spreadOSU', '$over_underND', '$over_underBama', '$over_underWisc', '$over_underG', '$over_underOSU')";
-		echo $sql;
+	/*if( $bamaErr == '' && $gErr == '' && $osuErr == '' && $wiscErr == '' && $ndErr == '' && $nameErr == ''){
+		$sql = "INSERT INTO picks (spread1, spread5, spread2, spread4, spread3, over_under5, over_under1, over_under4, over_under2, over_under3, name) VALUES ('$spread1', '$spread5', '$spread2', '$spread4', '$spread3', '$over_under5', '$over_under1', '$over_under4', '$over_under2', '$over_under3', '$name')";
+		//echo $sql;
+        if ($conn->query($sql) === TRUE) {
+            echo "New record created successfully". "<br/>";
+        } else {
+            echo "Error: " . $sql . "<br>" . $conn->error;
+        }   
+    }*/
+
+    if( $pickErr == '' && $nameErr == ''){
+		$sql = "INSERT INTO picks (spread1, spread5, spread2, spread4, spread3, over_under5, over_under1, over_under4, over_under2, over_under3, name) VALUES ('$spread1', '$spread5', '$spread2', '$spread4', '$spread3', '$over_under5', '$over_under1', '$over_under4', '$over_under2', '$over_under3', '$name')";
+		//echo $sql;
         if ($conn->query($sql) === TRUE) {
             echo "New record created successfully". "<br/>";
         } else {
@@ -132,19 +152,23 @@ function test_input($data) {
 </p>
 <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>">
 <div>
+	Name:
+	<input type="text" name="name">
+	<br>
+	<br>
 	<h3> #1 Alabama vs #19 LSU
 		<span class="error">
 		* <?php echo $bamaErr;?>
 		</span>
 	</h3>
 	Alabama:
-	<input type="radio" name="spreadBama" value="Alabama -21 (-110)" />-21 (-110)<br />
+	<input type="radio" name="spread1" value="Alabama -21 (-110)" />-21 (-110)<br />
 	LSU:
-	<input type="radio" name="spreadBama" value="LSU +21 (-110)" />+21 (-110)<br />
+	<input type="radio" name="spread1" value="LSU +21 (-110)" />+21 (-110)<br />
 	Over: 
-	<input type="radio" name="over_underBama" value="Over 65.5(-110)" />65.5 (-110)<br />
+	<input type="radio" name="over_under1" value="Over 65.5(-110)" />65.5 (-110)<br />
 	Under:
-	<input type="radio" name="over_underBama" value="Under 65.5 (-110)" />65.5 (-110)<br />
+	<input type="radio" name="over_under1" value="Under 65.5 (-110)" />65.5 (-110)<br />
 </div>
 <br />
 <br />
@@ -155,13 +179,13 @@ function test_input($data) {
 		</span>
 	</h3>
 	Georgia:
-	<input type="radio" name="spreadG" value="Georgia -24 (-110)" />-24 (-110)<br />
+	<input type="radio" name="spread2" value="Georgia -24 (-110)" />-24 (-110)<br />
 	South Carolina:
-	<input type="radio" name="spreadG" value="South Carolina +24 (-110)" />+24 (-110)<br />
+	<input type="radio" name="spread2" value="South Carolina +24 (-110)" />+24 (-110)<br />
 	Over: 
-	<input type="radio" name="over_underG" value="Over 56.5(-115)" />56.5 (-115)<br />
+	<input type="radio" name="over_under2" value="Over 56.5(-115)" />56.5 (-115)<br />
 	Under:
-	<input type="radio" name="over_underG" value="Under 56.5 (-105)" />56.5 (-105)<br />
+	<input type="radio" name="over_under2" value="Under 56.5 (-105)" />56.5 (-105)<br />
 </div>
 <br />
 <br />
@@ -172,13 +196,13 @@ function test_input($data) {
 		</span>
 	</h3>
 	Ohio State:
-	<input type="radio" name="spreadOSU" value="Ohio State -16 (-110)" />-16 (-110)<br />
+	<input type="radio" name="spread3" value="Ohio State -16 (-110)" />-16 (-110)<br />
 	Iowa:
-	<input type="radio" name="spreadOSU" value="Iowa +16 (-110)" />+16 (-110)<br />
+	<input type="radio" name="spread3" value="Iowa +16 (-110)" />+16 (-110)<br />
 	Over: 
-	<input type="radio" name="over_underOSU" value="Over 62.5(-110)" />62.5 (-110)<br />
+	<input type="radio" name="over_under3" value="Over 62.5(-110)" />62.5 (-110)<br />
 	Under:
-	<input type="radio" name="over_underOSU" value="Under 62.5 (-110)" />62.5 (-110)<br />
+	<input type="radio" name="over_under3" value="Under 62.5 (-110)" />62.5 (-110)<br />
 </div>
 <br />
 <br />
@@ -189,13 +213,13 @@ function test_input($data) {
 		</span>
 	</h3>
 	Wisconsin:
-	<input type="radio" name="spreadWisc" value="Wisonsin -10 (-110)" />-10 (-110)<br />
+	<input type="radio" name="spread4" value="Wisonsin -10 (-110)" />-10 (-110)<br />
 	Indiana:
-	<input type="radio" name="spreadWisc" value="Indiana +10 (-110)" />+10 (-110)<br />
+	<input type="radio" name="spread4" value="Indiana +10 (-110)" />+10 (-110)<br />
 	Over: 
-	<input type="radio" name="over_underWisc" value="Over 50.5(-110)" />50.5 (-120)<br />
+	<input type="radio" name="over_under4" value="Over 50.5(-110)" />50.5 (-120)<br />
 	Under:
-	<input type="radio" name="over_underWisc" value="Under 50.5 (-110)" />50.5 (+100)<br />
+	<input type="radio" name="over_under4" value="Under 50.5 (-110)" />50.5 (+100)<br />
 </div>
 <br />
 <br />
@@ -206,13 +230,13 @@ function test_input($data) {
 		</span>
 	</h3>
 	Notre Dame:
-	<input type="radio" name="spreadND" value="Notre Dame -13 (-110)" />-13 (-110)<br />
+	<input type="radio" name="spread5" value="Notre Dame -13 (-110)" />-13 (-110)<br />
 	Wake Forest:
-	<input type="radio" name="spreadND" value="Wake Forest +13 (-110)" />+13 (-110)<br />
+	<input type="radio" name="spread5" value="Wake Forest +13 (-110)" />+13 (-110)<br />
 	Over: 
-	<input type="radio" name="over_underND" value="Over 56.5(-110)" />58.5 (-110)<br />
+	<input type="radio" name="over_under5" value="Over 56.5(-110)" />58.5 (-110)<br />
 	Under:
-	<input type="radio" name="over_underND" value="Under 56.5 (-110)" />58.5 (-110)<br />
+	<input type="radio" name="over_under5" value="Under 56.5 (-110)" />58.5 (-110)<br />
 </div>
 <br />
 <br />
@@ -247,43 +271,43 @@ Gender:
 <input type="submit" name="submit" value="Submit" />
 </form>
 <?php
-	echo "<h2>Your Picks:</h2>";
+	echo "<h2>$name, your picks are:</h2>";
 	echo "<h3>Alabama vs LSU Game: <br></h3>";
-	echo $spreadBama;
+	echo $spread1;
 	echo "<br>";
-	echo $over_underBama;
+	echo $over_under1;
 	echo "<br>";
 	echo "<h3>Georgia vs South Carolina Game: <br></h3>";
-	echo $spreadG;
+	echo $spread2;
 	echo "<br>";
-	echo $over_underG;
+	echo $over_under2;
 	echo "<br>";
 	echo "<h3>Ohio State vs Iowa Game: <br></h3>";
-	echo $spreadOSU;
+	echo $spread3;
 	echo "<br>";
-	echo $over_underOSU;
+	echo $over_under3;
 	echo "<br>";
 	echo "<h3>Wisconsin vs Indiana Game: <br></h3>";
-	echo $spreadWisc;
+	echo $spread4;
 	echo "<br>";
-	echo $over_underWisc;
+	echo $over_under4;
 	echo "<br>";
 	echo "<h3>Notre Dame vs Wake Forest Game: <br></h3>";
-	echo $spreadND;
+	echo $spread5;
 	echo "<br>";
-	echo $over_underND;
-	
-	$sql = "SELECT * FROM picks";
+	echo $over_under5;
+	/*
+	$sql = "SELECT id, name, message FROM MyGuests";
 	$result = $conn->query($sql);
 	if ($result->num_rows > 0) {
 		echo "<br/>";
 		while($row = $result->fetch_assoc()) {
-			echo "id: " . $row["spreadBama"]. " - Name: " . $row["spreadG"]. " " . $row["spreadOSU"]. "<br>";
+			echo "id: " . $row["id"]. " - Name: " . $row["name"]. " " . $row["message"]. "<br>";
         }
 	} else {
 		echo "0 results";  
     }
-	
+	*/
 ?>
 </body>
 </html>
