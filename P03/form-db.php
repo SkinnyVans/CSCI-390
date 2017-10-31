@@ -43,11 +43,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		}
 	}
 	if (empty($_POST["website"])) {
-		$website = "";
+		$websiteErr = "";
 	} else {
 		$website = test_input($_POST["website"]);
 		// check if URL address syntax is valid
-		if (!preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i",$website)) {
+		if (!preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i",$website) || (empty($_POST["website"]))) {
 			$websiteErr = "Invalid URL";
 		}
 	}
@@ -122,7 +122,18 @@ Gender:
 
 <?php
 	echo "<h2>Your Input:</h2>";
-	echo $name;
+
+	echo "<table border='1' cellpadding='5'>";
+		echo "<tr>";
+			echo "<td>" . $name . "</td>";
+			echo "<td>" . $email . "</td>";
+			echo "<td>" . $website . "</td>";
+			echo "<td>" . $comment . "</td>";
+			echo "<td>" . $gender . "</td>";
+		echo "</tr>";
+	echo "</table>";
+
+	/*echo $name;
 	echo "<br>";
 	echo $email;
 	echo "<br>";
@@ -130,7 +141,7 @@ Gender:
 	echo "<br>";
 	echo $comment;
 	echo "<br>";
-	echo $gender;
+	echo $gender;*/
 	$sql = "SELECT id, name, message FROM MyGuests";
 	$result = $conn->query($sql);
 	if ($result->num_rows > 0) {
@@ -138,9 +149,7 @@ Gender:
 		while($row = $result->fetch_assoc()) {
 			echo "id: " . $row["id"]. " - Name: " . $row["name"]. " " . $row["message"]. "<br>";
         }
-	} else {
-		echo "0 results";  
-    }
+	}
 	
 ?>
 </body>
