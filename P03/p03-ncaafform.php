@@ -108,7 +108,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		$gender = test_input($_POST["gender"]);
 	}*/
 
-	if( $bamaErr == '' && $gErr == '' && $osuErr == '' && $wiscErr == '' && $ndErr){
+	if( $bamaErr == '' && $gErr == '' && $osuErr == '' && $wiscErr == '' && $ndErr == ''){
 		$sql = "INSERT INTO picks (spreadBama, spreadND, spreadG, spreadWisc, spreadOSU, over_underND, over_underBama, over_underWisc, over_underG, over_underOSU) VALUES ('$spreadBama', '$spreadND', '$spreadG', '$spreadWisc', '$spreadOSU', '$over_underND', '$over_underBama', '$over_underWisc', '$over_underG', '$over_underOSU')";
 		echo $sql;
         if ($conn->query($sql) === TRUE) {
@@ -272,18 +272,18 @@ Gender:
 	echo $spreadND;
 	echo "<br>";
 	echo $over_underND;
-	/*
-	$sql = "SELECT id, name, message FROM MyGuests";
+	
+	$sql = "SELECT * FROM picks";
 	$result = $conn->query($sql);
 	if ($result->num_rows > 0) {
 		echo "<br/>";
 		while($row = $result->fetch_assoc()) {
-			echo "id: " . $row["id"]. " - Name: " . $row["name"]. " " . $row["message"]. "<br>";
+			echo "id: " . $row["spreadBama"]. " - Name: " . $row["spreadG"]. " " . $row["spreadOSU"]. "<br>";
         }
 	} else {
 		echo "0 results";  
     }
-	*/
+	
 ?>
 </body>
 </html>

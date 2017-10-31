@@ -9,7 +9,23 @@
 </head>
 <body>
 
+
+
 <?php
+
+// create database and table
+/*
+$sql = "CREATE DATABASE test;"
+$sql = "CREATE TABLE MyGuests (
+	id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	name VARCHAR(50) NOT NULL,
+	email VARCHAR(50) NOT NULL,
+	comment VARCHAR(400),
+	website VARCHAR(50),
+	gender VARCHAR (30)
+	)";
+*/
+
 // define variables and set to empty values
 $nameErr = $emailErr = $genderErr = $websiteErr = "";
 $name = $email = $gender = $comment = $website = "";
@@ -166,6 +182,7 @@ Gender:
 			//echo "id: " . $row["id"]. " - Name: " . $row["name"]. " " . $row["message"]. "<br>";
         }
 	}
+
 
 	if ($_GET['sort'] == 'id')
 	{
