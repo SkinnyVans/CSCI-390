@@ -95,7 +95,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		$email = test_input($_POST["email"]);
 		// check if e-mail address is well-formed
 		if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-			
+
 		}
 	}
 	if (empty($_POST["website"])) {
@@ -125,7 +125,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo "New record created successfully". "<br/>";
         } else {
             echo "Error: " . $sql . "<br>" . $conn->error;
-        }   
+        }
     }*/
 
     if( $pickErr == '' && $nameErr == ''){
@@ -135,7 +135,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo "New record created successfully". "<br/>";
         } else {
             echo "Error: " . $sql . "<br>" . $conn->error;
-        }   
+        }
     }
 }
 function test_input($data) {
@@ -158,14 +158,14 @@ function test_input($data) {
 	<br>
 	<h3> #1 Alabama vs #19 LSU
 		<span class="error">
-		* <?php echo $bamaErr;?>
+		* <?php echo $pickErr;?>
 		</span>
 	</h3>
 	Alabama:
 	<input type="radio" name="spread1" value="Alabama -21 (-110)" />-21 (-110)<br />
 	LSU:
 	<input type="radio" name="spread1" value="LSU +21 (-110)" />+21 (-110)<br />
-	Over: 
+	Over:
 	<input type="radio" name="over_under1" value="Over 65.5(-110)" />65.5 (-110)<br />
 	Under:
 	<input type="radio" name="over_under1" value="Under 65.5 (-110)" />65.5 (-110)<br />
@@ -175,14 +175,14 @@ function test_input($data) {
 <div>
 	<h3> #2 Georgia vs South Carolina
 		<span class="error">
-		* <?php echo $gErr;?>
+		* <?php echo $pickErr;?>
 		</span>
 	</h3>
 	Georgia:
 	<input type="radio" name="spread2" value="Georgia -24 (-110)" />-24 (-110)<br />
 	South Carolina:
 	<input type="radio" name="spread2" value="South Carolina +24 (-110)" />+24 (-110)<br />
-	Over: 
+	Over:
 	<input type="radio" name="over_under2" value="Over 56.5(-115)" />56.5 (-115)<br />
 	Under:
 	<input type="radio" name="over_under2" value="Under 56.5 (-105)" />56.5 (-105)<br />
@@ -192,14 +192,14 @@ function test_input($data) {
 <div>
 	<h3> #3 Ohio State vs Iowa
 		<span class="error">
-		* <?php echo $osuErr;?>
+		* <?php echo $pickErr;?>
 		</span>
 	</h3>
 	Ohio State:
 	<input type="radio" name="spread3" value="Ohio State -16 (-110)" />-16 (-110)<br />
 	Iowa:
 	<input type="radio" name="spread3" value="Iowa +16 (-110)" />+16 (-110)<br />
-	Over: 
+	Over:
 	<input type="radio" name="over_under3" value="Over 62.5(-110)" />62.5 (-110)<br />
 	Under:
 	<input type="radio" name="over_under3" value="Under 62.5 (-110)" />62.5 (-110)<br />
@@ -209,14 +209,14 @@ function test_input($data) {
 <div>
 	<h3> #4 Wisconsin vs Indiana
 		<span class="error">
-		* <?php echo $wiscErr;?>
+		* <?php echo $pickErr;?>
 		</span>
 	</h3>
 	Wisconsin:
 	<input type="radio" name="spread4" value="Wisonsin -10 (-110)" />-10 (-110)<br />
 	Indiana:
 	<input type="radio" name="spread4" value="Indiana +10 (-110)" />+10 (-110)<br />
-	Over: 
+	Over:
 	<input type="radio" name="over_under4" value="Over 50.5(-110)" />50.5 (-120)<br />
 	Under:
 	<input type="radio" name="over_under4" value="Under 50.5 (-110)" />50.5 (+100)<br />
@@ -226,14 +226,14 @@ function test_input($data) {
 <div>
 	<h3> #5 Notre Dame vs Wake Forest
 		<span class="error">
-		* <?php echo $ndErr;?>
+		* <?php echo $pickErr;?>
 		</span>
 	</h3>
 	Notre Dame:
 	<input type="radio" name="spread5" value="Notre Dame -13 (-110)" />-13 (-110)<br />
 	Wake Forest:
 	<input type="radio" name="spread5" value="Wake Forest +13 (-110)" />+13 (-110)<br />
-	Over: 
+	Over:
 	<input type="radio" name="over_under5" value="Over 56.5(-110)" />58.5 (-110)<br />
 	Under:
 	<input type="radio" name="over_under5" value="Under 56.5 (-110)" />58.5 (-110)<br />
@@ -305,7 +305,7 @@ Gender:
 			echo "id: " . $row["id"]. " - Name: " . $row["name"]. " " . $row["message"]. "<br>";
         }
 	} else {
-		echo "0 results";  
+		echo "0 results";
     }
 	*/
 ?>
