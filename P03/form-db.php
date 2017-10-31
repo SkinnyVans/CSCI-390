@@ -120,10 +120,19 @@ Gender:
 <input type="submit" name="submit" value="Submit" />
 </form>
 
+<table border='1' cellpadding='5'>
+<tr>
+<th><a href='form-db.php?sort=id'>Id</a></th>
+<th><a href='form-db.php?sort=name'>Name</a></th>
+<th><a href='form-db.php?sort=email'>Email</a></th>
+<th><a href='form-db.php?sort=website'>Website</a></th>
+<th><a href='form-db.php?sort=gender'>Gender</a></th>
+</tr>
+
 <?php
 	echo "<h2>Your Input:</h2>";
 
-	echo "<table border='1' cellpadding='5'>";
+	/*echo "<table border='1' cellpadding='5'>";
 		echo "<tr>";
 			echo "<td>" . $name . "</td>";
 			echo "<td>" . $email . "</td>";
@@ -133,7 +142,7 @@ Gender:
 		echo "</tr>";
 	echo "</table>";
 
-	/*echo $name;
+	echo $name;
 	echo "<br>";
 	echo $email;
 	echo "<br>";
@@ -142,15 +151,45 @@ Gender:
 	echo $comment;
 	echo "<br>";
 	echo $gender;*/
-	$sql = "SELECT id, name, message FROM MyGuests";
+	$sql = "SELECT * FROM MyGuests";
 	$result = $conn->query($sql);
 	if ($result->num_rows > 0) {
 		echo "<br/>";
 		while($row = $result->fetch_assoc()) {
-			echo "id: " . $row["id"]. " - Name: " . $row["name"]. " " . $row["message"]. "<br>";
+				echo "<tr>";
+					echo "<td>" . $row["id"] . "</td>";
+					echo "<td>" . $row["name"] . "</td>";
+					echo "<td>" . $row["email"] . "</td>";
+					echo "<td>" . $row["website"] . "</td>";
+					echo "<td>" . $row["gender"] . "</td>";
+				echo "</tr>";
+			//echo "id: " . $row["id"]. " - Name: " . $row["name"]. " " . $row["message"]. "<br>";
         }
 	}
+
+	if ($_GET['sort'] == 'id')
+	{
+	    $sql .= " ORDER BY id";
+	}
+	elseif ($_GET['sort'] == 'name')
+	{
+	    $sql .= " ORDER BY name";
+	}
+	elseif ($_GET['sort'] == 'email')
+	{
+	    $sql .= " ORDER BY email";
+	}
+	elseif($_GET['sort'] == 'website')
+	{
+	    $sql .= " ORDER BY website";
+	}
+	elseif($_GET['sort'] == 'gender')
+	{
+	    $sql .= " ORDER BY gender";
+	}
+
 	
 ?>
+</table>
 </body>
 </html>
