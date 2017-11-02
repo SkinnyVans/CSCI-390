@@ -11,7 +11,7 @@
 
 <?php
 // define variables and set to empty values
-$pickErr = $nameErr = "";
+$pick1Err = $pick2Err = $pick3Err = $pick4Err = $pick5Err = $nameErr = "";
 $spread1 = $spread2 = $spread3 = $spread4 = $spread5 = $over_under1 = $over_under2 = $over_under3 = $over_under4 = $over_under5 = "";
 $name = "User";
 $servername = "localhost";
@@ -35,56 +35,56 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		}
 	}
 	if (empty($_POST["spread1"])) {
-		$pickErr = "Pick is required";
+		$pick1Err = "Pick is required";
 	} else {
 		$spread1 = test_input($_POST["spread1"]);
 	}
 	if (empty($_POST["over_under1"])) {
-		$pickErr = "Pick is required";
+		$pick1Err = "Pick is required";
 	} else {
 		$over_under1 = test_input($_POST["over_under1"]);
 	}
 
 	if (empty($_POST["spread2"])) {
-		$pickErr = "Pick is required";
+		$pick2Err = "Pick is required";
 	} else {
 		$spread2 = test_input($_POST["spread2"]);
 	}
 	if (empty($_POST["over_under2"])) {
-		$pickErr = "Pick is required";
+		$pick2Err = "Pick is required";
 	} else {
 		$over_under2 = test_input($_POST["over_under2"]);
 	}
 
 	if (empty($_POST["spread3"])) {
-		$pickErr = "Pick is required";
+		$pick3Err = "Pick is required";
 	} else {
 		$spread3 = test_input($_POST["spread3"]);
 	}
 	if (empty($_POST["over_under3"])) {
-		$pickErr = "Pick is required";
+		$pick3Err = "Pick is required";
 	} else {
 		$over_under3 = test_input($_POST["over_under3"]);
 	}
 
 	if (empty($_POST["spread4"])) {
-		$pickErr = "Pick is required";
+		$pick4Err = "Pick is required";
 	} else {
 		$spread4 = test_input($_POST["spread4"]);
 	}
 	if (empty($_POST["over_under4"])) {
-		$pickErr = "Pick is required";
+		$pick4Err = "Pick is required";
 	} else {
 		$over_under4 = test_input($_POST["over_under4"]);
 	}
 
 	if (empty($_POST["spread5"])) {
-		$pickErr = "Pick is required";
+		$pick5Err = "Pick is required";
 	} else {
 		$spread5 = test_input($_POST["spread5"]);
 	}
 	if (empty($_POST["over_under5"])) {
-		$pickErr = "Pick is required";
+		$pick5Err = "Pick is required";
 	} else {
 		$over_under5 = test_input($_POST["over_under5"]);
 	}
@@ -128,7 +128,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }*/
 
-    if( $pickErr == '' && $nameErr == ''){
+    if( $pick1Err == '' && $pick2Err == '' && $pick3Err == '' && $pick4Err == '' && $pick5Err == '' && $nameErr == ''){
 		$sql = "INSERT INTO picks (spread1, spread5, spread2, spread4, spread3, over_under5, over_under1, over_under4, over_under2, over_under3, name) VALUES ('$spread1', '$spread5', '$spread2', '$spread4', '$spread3', '$over_under5', '$over_under1', '$over_under4', '$over_under2', '$over_under3', '$name')";
 		//echo $sql;
         if ($conn->query($sql) === TRUE) {
@@ -154,11 +154,14 @@ function test_input($data) {
 <div>
 	Name:
 	<input type="text" name="name">
+	<span class="error">
+		* <?php echo $nameErr;?>
+	</span>
 	<br>
 	<br>
 	<h3> #1 Alabama vs #19 LSU
 		<span class="error">
-		* <?php echo $pickErr;?>
+		* <?php echo $pick1Err;?>
 		</span>
 	</h3>
 	Alabama:
@@ -166,16 +169,16 @@ function test_input($data) {
 	LSU:
 	<input type="radio" name="spread1" value="LSU +21 (-110)" />+21 (-110)<br />
 	Over:
-	<input type="radio" name="over_under1" value="Over 65.5(-110)" />65.5 (-110)<br />
+	<input type="radio" name="over_under1" value="Over 48.5(-110)" />48.5 (-110)<br />
 	Under:
-	<input type="radio" name="over_under1" value="Under 65.5 (-110)" />65.5 (-110)<br />
+	<input type="radio" name="over_under1" value="Under 48.5 (-110)" />48.5 (-110)<br />
 </div>
 <br />
 <br />
 <div>
 	<h3> #2 Georgia vs South Carolina
 		<span class="error">
-		* <?php echo $pickErr;?>
+		* <?php echo $pick2Err;?>
 		</span>
 	</h3>
 	Georgia:
@@ -183,16 +186,16 @@ function test_input($data) {
 	South Carolina:
 	<input type="radio" name="spread2" value="South Carolina +24 (-110)" />+24 (-110)<br />
 	Over:
-	<input type="radio" name="over_under2" value="Over 56.5(-115)" />56.5 (-115)<br />
+	<input type="radio" name="over_under2" value="Over 45.5(-110)" />45.5 (-110)<br />
 	Under:
-	<input type="radio" name="over_under2" value="Under 56.5 (-105)" />56.5 (-105)<br />
+	<input type="radio" name="over_under2" value="Under 45.5 (-110)" />45.5 (-110)<br />
 </div>
 <br />
 <br />
 <div>
 	<h3> #3 Ohio State vs Iowa
 		<span class="error">
-		* <?php echo $pickErr;?>
+		* <?php echo $pick3Err;?>
 		</span>
 	</h3>
 	Ohio State:
@@ -200,16 +203,16 @@ function test_input($data) {
 	Iowa:
 	<input type="radio" name="spread3" value="Iowa +16 (-110)" />+16 (-110)<br />
 	Over:
-	<input type="radio" name="over_under3" value="Over 62.5(-110)" />62.5 (-110)<br />
+	<input type="radio" name="over_under3" value="Over 52(-110)" />52 (-110)<br />
 	Under:
-	<input type="radio" name="over_under3" value="Under 62.5 (-110)" />62.5 (-110)<br />
+	<input type="radio" name="over_under3" value="Under 52 (-110)" />52 (-110)<br />
 </div>
 <br />
 <br />
 <div>
 	<h3> #4 Wisconsin vs Indiana
 		<span class="error">
-		* <?php echo $pickErr;?>
+		* <?php echo $pick4Err;?>
 		</span>
 	</h3>
 	Wisconsin:
@@ -217,16 +220,16 @@ function test_input($data) {
 	Indiana:
 	<input type="radio" name="spread4" value="Indiana +10 (-110)" />+10 (-110)<br />
 	Over:
-	<input type="radio" name="over_under4" value="Over 50.5(-110)" />50.5 (-120)<br />
+	<input type="radio" name="over_under4" value="Over 50.5(-110)" />48.5 (-120)<br />
 	Under:
-	<input type="radio" name="over_under4" value="Under 50.5 (-110)" />50.5 (+100)<br />
+	<input type="radio" name="over_under4" value="Under 50.5 (-110)" />48.5 (+100)<br />
 </div>
 <br />
 <br />
 <div>
 	<h3> #5 Notre Dame vs Wake Forest
 		<span class="error">
-		* <?php echo $pickErr;?>
+		* <?php echo $pick5Err;?>
 		</span>
 	</h3>
 	Notre Dame:
@@ -234,9 +237,9 @@ function test_input($data) {
 	Wake Forest:
 	<input type="radio" name="spread5" value="Wake Forest +13 (-110)" />+13 (-110)<br />
 	Over:
-	<input type="radio" name="over_under5" value="Over 56.5(-110)" />58.5 (-110)<br />
+	<input type="radio" name="over_under5" value="Over 56.5(-110)" />55.5 (-110)<br />
 	Under:
-	<input type="radio" name="over_under5" value="Under 56.5 (-110)" />58.5 (-110)<br />
+	<input type="radio" name="over_under5" value="Under 56.5 (-110)" />55.5 (-110)<br />
 </div>
 <br />
 <br />
