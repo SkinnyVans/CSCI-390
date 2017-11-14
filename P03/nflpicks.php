@@ -9,9 +9,9 @@ $pick1Err = $pick2Err = $pick3Err = $pick4Err = $pick5Err = $nameErr = "";
 $spread1 = $spread2 = $spread3 = $spread4 = $spread5 = $over_under1 = $over_under2 = $over_under3 = $over_under4 = $over_under5 = "";
 $name = "User";
 $servername = "localhost";
-$username = "root";
-$password = "Password";
-$dbname = "nflpicks";
+$username = "hartsonj";
+$password = "";
+$dbname = "picks";
          // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 // Check connection
@@ -84,7 +84,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	}
 
     if( $pick1Err == '' && $pick2Err == '' && $pick3Err == '' && $pick4Err == '' && $pick5Err == '' && $nameErr == ''){
-		$sql = "INSERT INTO picks (spread1, spread5, spread2, spread4, spread3, over_under5, over_under1, over_under4, over_under2, over_under3, name) VALUES ('$spread1', '$spread5', '$spread2', '$spread4', '$spread3', '$over_under5', '$over_under1', '$over_under4', '$over_under2', '$over_under3', '$name')";
+		$sql = "INSERT INTO nfl_picks (spread1, spread5, spread2, spread4, spread3, over_under5, over_under1, over_under4, over_under2, over_under3, name) VALUES ('$spread1', '$spread5', '$spread2', '$spread4', '$spread3', '$over_under5', '$over_under1', '$over_under4', '$over_under2', '$over_under3', '$name')";
 		//echo $sql;
         if ($conn->query($sql) === TRUE) {
             echo "New record created successfully". "<br/>";
@@ -103,9 +103,9 @@ function test_input($data) {
 
 <div class="container">
 
-  <div class="jumbotron jumbotron-fluid">
+  <div class="jumbotron jumbotron-fluid" style="background-color: #001489; color: #fff;">
     <div class="container">
-      <h1 class="display-3">NFL Football Week 10 Pick'Em</h1>
+      <h1 class="display-3">NFL Football Week 11 Pick'Em</h1>
       <!--<p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>-->
     </div>
   </div>

@@ -5,9 +5,9 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
-      <a class="nav-item nav-link active" href="/CSCI-390/P03/login.php">Home <span class="sr-only">(current)</span></a>
-      <a class="nav-item nav-link" href="/CSCI-390/P03/p03-ncaafform.php">NCAA Picks</a>
-      <a class="nav-item nav-link" href="/CSCI-390/P03/nflpicks.php">NFL Picks</a>
+      <a class="nav-item nav-link active" href="/P03/">Home <span class="sr-only">(current)</span></a>
+      <a class="nav-item nav-link" href="/P03/sportsbetting.php">NCAA Picks</a>
+      <a class="nav-item nav-link" href="/P03/nflpicks.php">NFL Picks</a>
     </div>
   </div>
 </nav>

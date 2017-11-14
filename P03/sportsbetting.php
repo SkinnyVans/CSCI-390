@@ -1,3 +1,4 @@
+<!--
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -80,6 +81,12 @@
   }
 </style>
 </head>
+-->
+
+<?php include 'header.php';?>
+
+<?php include 'navbar.php';?>
+
 <body>
 
 <?php
@@ -88,9 +95,9 @@ $pick1Err = $pick2Err = $pick3Err = $pick4Err = $pick5Err = $nameErr = "";
 $spread1 = $spread2 = $spread3 = $spread4 = $spread5 = $over_under1 = $over_under2 = $over_under3 = $over_under4 = $over_under5 = "";
 $name = "User";
 $servername = "localhost";
-$username = "root";
-$password = "Password";
-$dbname = "ncaapicks";
+$username = "hartsonj";
+$password = "";
+$dbname = "picks";
          // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 // Check connection
@@ -162,7 +169,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		$over_under5 = test_input($_POST["over_under5"]);
 	}
   if( $pick1Err == '' && $pick2Err == '' && $pick3Err == '' && $pick4Err == '' && $pick5Err == '' && $nameErr == ''){
-  	$sql = "INSERT INTO picks (spread1, spread5, spread2, spread4, spread3, over_under5, over_under1, over_under4, over_under2, over_under3, name) VALUES ('$spread1', '$spread5', '$spread2', '$spread4', '$spread3', '$over_under5', '$over_under1', '$over_under4', '$over_under2', '$over_under3', '$name')";
+  	$sql = "INSERT INTO ncaaf_picks (spread1, spread5, spread2, spread4, spread3, over_under5, over_under1, over_under4, over_under2, over_under3, name) VALUES ('$spread1', '$spread5', '$spread2', '$spread4', '$spread3', '$over_under5', '$over_under1', '$over_under4', '$over_under2', '$over_under3', '$name')";
   	//echo $sql;
         if ($conn->query($sql) === TRUE) {
             echo "New record created successfully". "<br/>";
@@ -178,8 +185,17 @@ function test_input($data) {
 	return $data;
 }
     ?>
+    
+<div class="container">
 
-<h2>NCAA Football Week 10 Pick'Em</h2>
+  <div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h1 class="display-3">NCAA Football Week 12 Pick'Em</h1>
+      <!--<p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>-->
+    </div>
+  </div>
+
+<!--<h2>NCAA Football Week 10 Pick'Em</h2>-->
 <p>
 	<span class="error">* required field.</span>
 </p>
@@ -277,13 +293,15 @@ function test_input($data) {
 <br />
 <br />
 <!--</form>-->
-<input type="submit" id="myBtn"name="submit" value="Place Bet">
+<input type="submit" id ="myBtn" name="submit" class="btn btn-success btn-sm" value="Place Bet" />
+
+</div>
 
 <!-- The Modal -->
 <div id="myModal" class="modal">
   <!-- Modal content -->
   <div class="modal-content">
-    <form method="post" action="/CSCI-390/P03/sportsbetting.php">
+    <form method="post" action="/P03/sportsbetting.php">
     <div class="modal-header">
       <span class="close">&times;</span>
       <h2>Place Your Bets</h2>
@@ -411,6 +429,8 @@ function test_input($data) {
   }
 </script>
 
+<div class="container">
+
 <?php
 	if( $pick1Err == '' && $pick2Err == '' && $pick3Err == '' && $pick4Err == '' && $pick5Err == '' && $nameErr == ''){
 		echo "<h2>$name, your picks are:</h2>";
@@ -440,5 +460,8 @@ function test_input($data) {
 		echo $over_under5;
 	}
 ?>
+
+</div>
 </body>
-</html>
+
+<?php include 'footer.php';?>
